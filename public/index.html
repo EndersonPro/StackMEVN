@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.22/vue.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/4/yeti/bootstrap.min.css"
+    />
+    <title>CRUD</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">Lista de Tareas</a>
+    </nav>
+    <!-- Acá estara toda nuestra aplicacion con Vue -->
+    <div id="app">
+      <div class="container">
+        <div class="row mt-2">
+          <div class="col-md-4"></div>
+          <div class="col"><list-tasks></list-tasks></div>
+        </div>
+      </div>
+    </div>
+
+    <template id="listTasks">
+      <ul>
+        <li v-for="task in tasks" :key="task._id">{{ task.name }}</li>
+      </ul>
+    </template>
+    <!-- TODO: Continuar por acá, realizar componente para el formulario de ingreso de tareas --> 
+    <template id="formTask">
+      <form>
+        <fieldset>
+          <div class="form-group">
+            <label for="name">Nombre de la tarea</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name" 
+              name="name"
+              placeholder="Ingresa nombre de la tarea"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar</button>
+        </fieldset>
+      </form>
+    </template>
+  </body>
+
+  <script src="/js/components.js"></script>
+  <script src="/js/main.js"></script>
+</html>
