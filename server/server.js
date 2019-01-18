@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 
 /* Conexion a la base de datos de MONGODB */
-mongoose.connect('mongodb://localhost:27017/listTasks', { useNewUrlParser: true }).then(() => {
+mongoose.connect('mongodb://localhost:27017/users', { useNewUrlParser: true }).then(() => {
     console.log("Base de datos conectada");
 }).catch(err => console.log(err));
 
@@ -15,7 +15,7 @@ const port = process.env.PORT || 9000;
 // Me permite servir archivos estaticos al cliente..
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(require("./routes/tasks"))
+app.use(require("./routes/UserRoute"))
 app.use(express.static(path.resolve(path.join(__dirname, '../public'))));
 
 
