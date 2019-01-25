@@ -24,8 +24,7 @@ app.post("/user/create", (req, res) => {
     username: body.username,
     firstname: body.firstname,
     lastname: body.lastname,
-    email: body.email,
-
+    email: body.email
   });
 
   newUser.save((err, user) => {
@@ -44,42 +43,31 @@ app.post("/user/create", (req, res) => {
 app.put("/user/:id/update", (req, res) => {
   const body = req.body;
   const id = req.params.id;
-  const { username, firstname, lastname, email } = body;
 
-  User.findById(id, (err, user) => {
-    if (err)
+  const opts = {
+    new: true
+  };
+
+  User.findOneAndUpdate({ "_id": id }, body, opts, (err, user) => {
+     if (err)
       res.json({
         state: false,
         err,
         message: `Usuario con el id ${id} no se encontro o no existe`,
         user: null
       });
-
-    user.username = username ? username : user.username;
-    user.firstname = firstname ? firstname : user.firstname;
-    user.lastname = lastname ? lastname : user.lastname;
-    user.email = email ? email : user.email;
-
-    user.save((err, user) => {
-      if (err)
-        res.json({
-          state: false,
-          err,
-          message: "Ocurrio un error al actualizar el usuario",
-          user: null
-        });
       res.json({
         state: true,
         message: "Usuario Actualizado correctamente",
         user
       });
-    });
-  });
+  }); 
 });
+
 
 app.delete("/user/:id/delete", (req, res) => {
   const id = req.params.id;
-  User.findByIdAndRemove(id, (err, user) => {
+  User.findOneAndDelete({"_id": id}, (err, user) => {
     if (err)
       res.json({
         state: false,

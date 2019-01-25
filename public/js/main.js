@@ -1,4 +1,5 @@
 new Vue({
-    store,
     el: "#app",
+    store,
+    router,
 })

@@ -11,6 +11,9 @@ const store = new Vuex.Store({
     },
     NEW_USER(state, payload) {
       state.users = [...state.users, payload];
+    },
+    DELETE_USER(state, payload) {
+      state.users = state.users.filter(user => user != payload);
     }
   },
   actions: {
@@ -19,6 +22,9 @@ const store = new Vuex.Store({
     },
     newUser: (context, user) => {
       context.commit("NEW_USER", user);
+    },
+    deleteUser: (context, user) => {
+      context.commit("DELETE_USER", user);
     }
   }
 });
